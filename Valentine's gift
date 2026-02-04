@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine Bear Tease 🐻❤️</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffebee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    z-index: 2;
+}
+
+.bears {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.bear {
+    width: 160px;
+    transition: transform 0.5s;
+}
+
+#brown-bear {
+    animation: tease 2s infinite alternate;
+}
+
+@keyframes tease {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(10deg); }
+}
+
+/* Hug animation */
+.hug {
+    transform: scale(1.2) rotate(-5deg);
+}
+
+/* Text */
+h1 {
+    color: #e91e63;
+    font-size: 2em;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 15px;
+    position: relative;
+}
+
+button {
+    padding: 10px 25px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#yes {
+    background-color: #4caf50;
+    color: white;
+}
+
+#no {
+    background-color: #f44336;
+    color: white;
+    position: absolute;
+    right: -80px;
+}
+
+/* Response */
+#response {
+    display: none;
+    font-size: 2.5em;
+    color: #e91e63;
+    margin-top: 20px;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Floating hearts */
+.heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 24px;
+    animation: floatUp 4s linear infinite;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="bears">
+        <img id="white-bear" class="bear" src="https://i.imgur.com/J5LVHEL.png">
+        <img id="brown-bear" class="bear" src="https://i.imgur.com/O8TQKXU.png">
+    </div>
+
+    <h1>Do you love me? 🥺❤️</h1>
+
+    <div class="buttons">
+        <button id="yes">Yes 😘</button>
+        <button id="no">No 🙈</button>
+    </div>
+
+    <div id="response">I knew it Jaanu 😘❤️</div>
+</div>
+
+<script>
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+const response = document.getElementById("response");
+const brownBear = document.getElementById("brown-bear");
+const whiteBear = document.getElementById("white-bear");
+
+// NO button slips away 😈
+noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * 200 - 100;
+    const y = Math.random() * 100 - 50;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+// YES button 💖
+yesBtn.addEventListener("click", () => {
+    response.style.display = "block";
+    document.querySelector("h1").style.display = "none";
+    document.querySelector(".buttons").style.display = "none";
+
+    brownBear.classList.add("hug");
+    whiteBear.classList.add("hug");
+
+    createHearts();
+});
+
+// Floating hearts 💕
+function createHearts() {
+    for (let i = 0; i < 20; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 5000);
+    }
+}
+</script>
+
+</body>
+</html>
